@@ -1,54 +1,35 @@
-﻿#include "proga2.h"
+// main.cpp
+#include "university.h"
 #include <windows.h>
-#include <iostream>
-
-using namespace std;
-
+ 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-
-    int numStudents;
-    cout << "Введите количество студентов: ";
-    cin >> numStudents;
-
-    for (int i = 0; i < numStudents; ++i) {
-        string name, faculty;
-        int numSubjects;
-        vector<string> subjects;
-        vector<int> grades;
-
-        cout << "ФИО: ";
-        cin.ignore();
-        getline(cin, name);
-        cout << "Факультет: ";
-        getline(cin, faculty);
-        cout << "Количество предметов: ";
-        cin >> numSubjects;
-        cin.ignore();
-
-        for (int j = 0; j < numSubjects; ++j) {
-            string subject;
-            int grade;
-            cout << "Введите предмет " << j + 1 << ": ";
-            getline(cin, subject);
-            subjects.push_back(subject);
-            cout << "Введите оценку за " << subject << ": ";
-            cin >> grade;
-            grades.push_back(grade);
-            cin.ignore();
-        }
-
-        addStudent(name, faculty, subjects, grades);
+ SetConsoleCP(1251);
+ SetConsoleOutputCP(1251);
+    int numberOfStudents;
+    cout << "Введите кол-во студентов: ";
+    cin >> numberOfStudents;
+ Student* students = new Student[numberOfStudents];
+ Sportsman* sportsmen = new Sportsman[numberOfStudents];
+ Activist* activists = new Activist[numberOfStudents];
+ Nauchnic* nauchnics = new Nauchnic[numberOfStudents];
+ Ckmr* ckmrs = new Ckmr[numberOfStudents];
+ 
+    for (int i = 0; i < numberOfStudents; i++)
+    {
+        cout << "Введите детали для студента: " << i + 1 << ":\n";
+ inputData(students[i], sportsmen[i], activists[i], nauchnics[i], ckmrs[i]);
     }
-
-    string studentName;
-    cout << "Введите ФИО студента, у которого хотите узнать кол-во долгов: ";
-    getline(cin, studentName);
-    cout << "Долгов у " << studentName << ": " << calculateStudentDebts(studentName) << endl;
-
-    cout << "Общее кол-во долгов в университете: " << calculateTotalDebts() << endl;
-
-
+    cout << "\nВесь список студентов: \n";
+    for (int i = 0; i < numberOfStudents; ++i) {
+        printStudentList(students[i], sportsmen[i], activists[i], nauchnics[i], ckmrs[i]);
+    }
+ 
+    delete[] students;
+    delete[] sportsmen;
+    delete[] activists;
+    delete[] nauchnics;
+    delete[] ckmrs;
+ 
     return 0;
+ 
 }
