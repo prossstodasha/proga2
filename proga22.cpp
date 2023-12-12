@@ -1,55 +1,30 @@
-﻿#include "proga2.h"
+#include "Header.h"
 #include <windows.h>
-#include  <iostream>
-
-using namespace std;
-
+ 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-int numStudents;
-cout << "Введите количество студентов: ";
-cin >> numStudents;
-
-for (int i = 0; i < numStudents; ++i) {
-    string name, faculty;
-    int numSubjects;
-    vector<string> subjects;
-    vector<int> grades;
-
-    cout << "ФИО: ";
-    cin.ignore();
-    getline(cin, name);
-    cout << "Факультет: ";
-    getline(cin, faculty);
-    cout << "Количество предметов: ";
-    cin >> numSubjects;
-    cin.ignore();
-
-    for (int j = 0; j < numSubjects; ++j) {
-        string subject;
-        int grade;
-        cout << "Введите предмет " << j + 1 << ": ";
-        getline(cin, subject);
-        subjects.push_back(subject);
-        cout << "Введите оценку за " << subject << ": ";
-        cin >> grade;
-        grades.push_back(grade);
-        cin.ignore();
+ SetConsoleCP(1251);
+ SetConsoleOutputCP(1251);
+ 
+    const int MAX_STUDENTS = 10; // Максимальное количество студентов
+ Student students[MAX_STUDENTS];
+ Sportsman sportsman;
+ Activist activist;
+    Nauchnic nauchnic;
+    Ckmr ckmr;
+ 
+    cout << "Введите количество студентов: ";
+    int count;
+    cin >> count;
+ 
+    // Ввод данных для каждого студента
+    for (int i = 0; i < count; ++i) {
+        students[i].inputData();
     }
-
-    Student student(name, faculty, subjects, grades);
-    student.addStudent();
-}
-
-string studentName;
-cout << "Введите ФИО студента, у которого хотите узнать кол-во долгов: ";
-getline(cin, studentName);
-Student student;
-cout << "Долгов у " << studentName << ": " << student.calculateStudentDebts(studentName) << endl;
-
-cout << "Общее кол-во долгов в университете: " << student.calculateTotalDebts() << endl;
-
-
-return 0;
+ 
+    for (int i = 0; i < count; i++)
+    {
+        students[i].printList();
+    }
+ 
+    return 0;
 }
